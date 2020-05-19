@@ -8,11 +8,14 @@
 - https://qiita.com/nikoniko/items/516b95c5944a19d8e16b
 ### 補足にLaravel版
 - https://qiita.com/A-Kira/items/1c55ef689c0f91420e81
+### GitHub使い方
+- https://www.sejuku.net/blog/70775
 
 ## デバックメモ
 Docker関連
-1. "../work-place:/var/www/html"は右(local内)左(docker内)のロケーション・ファイルは同じものということ
-1. symfonyのprojectはdocker-compose php:volumes:の場所にできる(空じゃないとできない)
+1. 新しくcomposerに機能を追加したブランチをマージしたり、新規cloneした時は"$ composer update"もしくは"$ composer install"をする(もちろんdocker内で)
+1. "../work-place:/var/www/html"は右(local内)左(docker内)は同義ということ(基準点はdocker-composeの位置)
+1. symfonyのprojectはdocker-compose php:volumes:の場所にできる(空dirじゃないとできない)
 1. docker build でエラーが出ても空白や改行によるトラブルも多い
 1. docker exec -it {container id} bin/bashでコンテナに入るということは/var/www/htmlに入るということ
 1. phpmyadminのenvironmentは削除しておく
