@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    {# タイトルを変更 #}
+    <title>{% block title %}{% endblock %}</title>
+    {# BootstrapのCDN参照を追加 #}
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/daterangepicker.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/dataTables.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/dataTables.bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/dataTables.checkboxes.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/awesome-bootstrap-checkbox.css') }}">
+
+    {# アプリケーション専用のCSS参照を追加 #}
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    {% block stylesheets %}{% endblock %}
+</head>
+<body>
+<header class="container">
+    {# ナビゲーションバーを追加 #}
+    {% include '_navbar.html.twig' %}
+</header>
+<div class="container main">
+    {% block body %}{% endblock %}
+</div>
+<footer>
+    {% include '_footer.html.twig' %}
+</footer>
+
+{# JQueryのCDN参照を追加 #}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+{# BootstrapのCDN参照を追加 #}
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+{# bootbox.min.js #}
+<script src="{{ asset('js/bootbox.min.js') }}"></script>
+{# daterangepicker #}
+<script type="text/javascript" src="{{ asset('js/moment.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/daterangepicker.js') }}"></script>
+{# datatable #}
+<script type="text/javascript" charset="utf8" src="{{ asset('js/datatables.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/dataTables.checkboxes.js') }}"></script>
+{# jquery.number #}
+<script type="text/javascript" src="{{ asset('js/jquery.number.min.js') }}"></script>
+{% block javascripts %}{% endblock %}
+
+</body>
+</html>

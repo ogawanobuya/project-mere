@@ -1,0 +1,54 @@
+/** navbar **/
+.navbar-brand {
+    padding:0;
+    color:#fff;
+    margin-right:30px;
+}
+
+.navbar-inverse {
+    background:#38a1db;
+    border-color: #378EC7;
+}
+.nav>li>a {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.navbar-nav>li>a {
+    padding-top:20px;
+}
+
+.dropdown-menu {
+    min-width: 250px;
+}
+
+
+.dropdown-menu>li>a {
+    padding: 8px 20px;
+}
+.navbar .company-name {
+    padding: 6px;
+    margin: 0 8px;
+    border-bottom: solid 1px #9d9d9d;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+    color:#fff;
+}
+
+.navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus, .navbar-inverse .navbar-nav>.open>a:hover {
+    backgrund:#256b92;
+    color:#fff;
+}
+
+
+@media (min-width: 768px) {
+    .navbar-right {
+        margin-right: 0px;
+    }
+}
+@media (max-width: 767px) {
+    .navbar .company-name {
+        color: #9d9d9d;
+    }
+}
