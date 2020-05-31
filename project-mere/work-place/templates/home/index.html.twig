@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}HOME{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="page-header col-sm-12">
+                <h1>HOME</h1>
+                <p class="description-area">アイデアの投稿・募集・検索などここから操作できます。</p>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        {% include 'parts/message.twig' %}
+        <div class="row">
+            <div class="page-header col-sm-12">
+                <a href="{{ path('idea_new') }}" class="btn btn-primary">アイデア募集</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <table id="task-table" class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th class="col-sm-2">タイトル</th>
+                        <th class="col-sm-1">カテゴリ</th>
+                        <th class="col-sm-4">概要</th>
+                        <th class="col-sm-2">作成日</th>
+                        <th class="col-sm-1">状態</th>
+                        <th class="col-sm-2">アクション</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for ideaAsk in ideaAsks %}
+                        <tr>
+                            <td><a href="{{ path('idea_room', { 'id': ideaAsk.id }) }}">{{ ideaAsk.title }}</a></td>
+                            <td>{{ ideaAsk.ideaCategory.name }}</td>
+                            <td>{{ ideaAsk.description }}</td>
+                            <td>{{ ideaAsk.createdAt|date('Y-m-d H:i:s') }}</td>
+                            <td class="model-status text-center">
+                                {% if ideaAsk.isSolved %}
+                                    <span class="text-success"><i class="far fa-play-circle"></i> 解決</span>
+                                {% else %}
+                                    <span class="text-muted"><i class="far fa-pause-circle"></i> 募集中</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <span><a class="btn btn-success" href="{{ path('idea_answer', { 'id': ideaAsk.id }) }}">回答する</a></span>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

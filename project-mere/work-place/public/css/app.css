@@ -17,7 +17,7 @@ html {
     height: 100%;
 }
 body {
-    padding-top: 50px;
+    padding-top: 50px;/** navbarに被らないように50px空ける **/
     font-size: 14px;
     min-height: 100%;
     display: flex;
@@ -183,7 +183,7 @@ th a.desc:after {
     color: #CC0000;
 }
 
-/* spacing padding */
+/* パディング簡略化 */
 .p-1 { padding: .25rem!important; }
 .p-2 { padding: .5rem!important; }
 .p-3 { padding: 1rem!important; }
@@ -193,7 +193,7 @@ th a.desc:after {
 .pr-0 { padding-right: 0!important; }
 .pl-0 { padding-left: 0!important; }
 
-/* spacing margin */
+/* マージン簡略化 */
 .m-1 { margin: .25rem!important; }
 .m-2 { margin: .5rem!important; }
 .m-3 { margin: 1rem!important; }

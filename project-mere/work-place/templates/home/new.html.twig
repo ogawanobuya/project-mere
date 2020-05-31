@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}アイデア募集{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="page-header col-sm-12">
+                <h1>アイデア募集</h1>
+                <p class="description-area">アイデアの募集ページを作成します。必要事項を埋めてください。</p>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        {% include 'parts/message.twig' %}
+        <div class="row">
+            <div class="page-header col-sm-8">
+                {{ form_start(formIdeaAsk) }}
+                <div class="form-group">
+                    {{ form_label(formIdeaAsk.ideaCategory) }}
+                    {{ form_widget(formIdeaAsk.ideaCategory) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(formIdeaAsk.title) }}
+                    {{ form_widget(formIdeaAsk.title) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(formIdeaAsk.description) }}
+                    {{ form_widget(formIdeaAsk.description) }}
+                </div>
+                <button type="submit" class="btn btn-success">登録</button>
+                {{ form_end(formIdeaAsk) }}
+            </div>
+            <div class="goto-back text-right"><a href="{{ path('idea_home') }}"><i class="fas fa-undo"></i> HOMEへ戻る</a></div>
+        </div>
+    </div>
+{% endblock %}

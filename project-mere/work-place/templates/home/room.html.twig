@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}アイデアROOM{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="page-header col-sm-12">
+                <h1>アイデアROOM</h1>
+                <p class="description-area">投稿されたアイデア達です。是非あなたも投稿してください。</p>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        {% include 'parts/message.twig' %}
+        <div class="row">
+            <div class="page-header col-sm-8">
+                <div class="form-group">
+                    <div class="text-right">{{ ideaAsk.createdAt|date('Y-m-d H:i:s') }}</div>
+                    <label class="control-label">募集タイトル</label>
+                    <p class="form-control-static input-lg">{{ ideaAsk.title }}</p>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">カテゴリ</label>
+                    <p class="form-control-static input-lg">{{ ideaAsk.ideaCategory.name }}</p>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">募集内容詳細</label>
+                    <h5><strong>{{ ideaAsk.description }}</strong></h5>
+                </div><hr>
+                {% for ideaAnswer in ideaAnswers %}
+                    <div class="alert alert-warning" role="alert">
+                        <div class="form-group">
+                            <div class="text-right">{{ ideaAnswer.createdAt|date('Y-m-d H:i:s') }}</div>
+                            <label class="control-label">一言アイデア</label>
+                            <p class="form-control-static input-lg">{{ ideaAnswer.title }}</p>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">内容詳細</label>
+                            <p class="form-control-static input-lg">{{ ideaAnswer.description }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+                <div class="text-center"><a class="btn btn-success" href="{{ path('idea_answer', { 'id': ideaAsk.id }) }}">回答する</a></div>
+            </div>
+            <div class="goto-back text-right"><a href="{{ path('idea_home') }}"><i class="fas fa-undo"></i> HOMEへ戻る</a></div>
+        </div>
+    </div>
+{% endblock %}

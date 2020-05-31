@@ -36,4 +36,4 @@ DataBase関連
      url: '%env(resolve:DATABASE_URL)%'
      //DATABASE_URL=mysql://MYSQL_USER:MYSQL_PASSWORD@docker_service(db):3306/MYSQL_DATABASE
 ```
-２. "./docker/mysql/data"を削除しないとDB名など設定が変わらない
+２. "./docker/mysql/data"を削除しないとDB名・DBコンテナ情報など設定が反映されない

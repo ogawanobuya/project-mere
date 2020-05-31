@@ -18,9 +18,10 @@ services:
       - db
 
   db:
-    image: mysql:5.7
+    image: mysql:5.6
+    container_name: docker_db_mere
     ports:
-      - 33306:3306
+      - 3307:3306
     volumes:
       - ./mysql/data:/var/lib/mysql
     environment:
