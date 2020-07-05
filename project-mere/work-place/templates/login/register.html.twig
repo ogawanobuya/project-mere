@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ユーザー登録{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="page-header col-sm-12">
+                <h1>ユーザー登録</h1>
+                <p class="description-area">ここでユーザー登録を行います。必要事項を埋めてください。</p>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        {% include 'parts/message.twig' %}
+        <div class="row">
+            <div class="page-header col-sm-8">
+                {{ form_start(formUser) }}
+                <div class="form-group">
+                    {{ form_label(formUser.userEmail) }}
+                    {{ form_widget(formUser.userEmail) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(formUser.password) }}
+                    {{ form_widget(formUser.password) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(formUser.username) }}
+                    {{ form_widget(formUser.username) }}
+                </div>
+                <button type="submit" class="btn btn-success">登録</button>
+                {{ form_end(formUser) }}
+                <div class="goto-back text-right"><a href="{{ path('login') }}"><i class="fas fa-undo"></i> ログイン画面へ戻る</a></div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

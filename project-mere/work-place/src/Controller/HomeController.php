@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Entity\IdeaAnswer;
 use App\Entity\IdeaAsk;
+use App\Entity\User;
 use App\Form\IdeaAnswerType;
 use App\Form\IdeaAskType;
 use App\Repository\IdeaAnswerRepository;
@@ -54,13 +55,16 @@ class HomeController extends AbstractController
      */
     public function newAction(Request $request)
     {
-        $ideaCategories = $this->ideaCategoryRepository->findAll();
+        /** @var User $user */
+        $user = $this->getUser();
 
         $ideaAsk = new IdeaAsk();
+        $ideaCategories = $this->ideaCategoryRepository->findAll();
         $formIdeaAsk = $this->createForm(IdeaAskType::class, $ideaAsk, ['ideaCategories' => $ideaCategories]);
         $formIdeaAsk->handleRequest($request);
 
         if ($formIdeaAsk->isSubmitted()){
+            $ideaAsk->setUser($user);
             $ideaAsk->setIsSolved(false);
             $this->ideaAskRepository->add($ideaAsk);
             $this->addFlash('success', 'アイデア募集を登録しました。');
@@ -81,11 +85,15 @@ class HomeController extends AbstractController
      */
     public function answerAction(Request $request, IdeaAsk $ideaAsk)
     {
+        /** @var User $user */
+        $user = $this->getUser();
+
         $ideaAnswer = new IdeaAnswer();
         $formIdeaAnswer = $this->createForm(IdeaAnswerType::class, $ideaAnswer);
         $formIdeaAnswer->handleRequest($request);
 
         if ($formIdeaAnswer->isSubmitted()){
+            $ideaAnswer->setUser($user);
             $ideaAnswer->setIdeaAsk($ideaAsk);
             $this->ideaAnswerRepository->add($ideaAnswer);
             $this->addFlash('success', 'アイデアを投稿しました。');

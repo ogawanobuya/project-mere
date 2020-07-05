@@ -1,7 +1,20 @@
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header">
-            <h4><strong><font color="#ffffff"> アイデアの森</font></strong></h4>
+            <a href="{{ path('idea_home') }}">
+                <h4><strong><font color="#ffffff"><i class="fas fa-lightbulb fa-2x"></i> アイデアの森</font></strong></h4>
+            </a>
         </div>
+        {% if app.user %}
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fas fa-cog"></i> 設定 <i class="fas fa-caret-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ path('user_index', { 'id': app.user.id }) }}"><i class="fas fa-user"></i> ユーザー設定</a></li>
+                        <li><a href="{{ path('logout') }}"><i class="fas fa-sign-out-alt"></i> ログアウト</a></li>
+                    </ul>
+                </li>
+            </ul>
+        {% endif %}
     </div>
 </nav>

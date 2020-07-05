@@ -35,6 +35,14 @@ class IdeaAsk
     private $isSolved;
 
     /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="ideaAsk", cascade={"persist"})
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
+     * })
+     */
+    private $user;
+
+    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\IdeaCategory", inversedBy="ideaAsk", cascade={"persist"})
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="idea_category_id", referencedColumnName="id", nullable=false)
@@ -90,6 +98,18 @@ class IdeaAsk
     public function setIsSolved(?bool $isSolved): self
     {
         $this->isSolved = $isSolved;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

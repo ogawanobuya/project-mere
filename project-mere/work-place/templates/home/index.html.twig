@@ -26,9 +26,10 @@
                         <th class="col-sm-2">タイトル</th>
                         <th class="col-sm-1">カテゴリ</th>
                         <th class="col-sm-4">概要</th>
-                        <th class="col-sm-2">作成日</th>
+                        <th class="col-sm-1">作成日</th>
+                        <th class="col-sm-2">作成者</th>
                         <th class="col-sm-1">状態</th>
-                        <th class="col-sm-2">アクション</th>
+                        <th class="col-sm-1">アクション</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -38,7 +39,8 @@
                             <td>{{ ideaAsk.ideaCategory.name }}</td>
                             <td>{{ ideaAsk.description }}</td>
                             <td>{{ ideaAsk.createdAt|date('Y-m-d H:i:s') }}</td>
-                            <td class="model-status text-center">
+                            <td><a href="{{ path('user_index', { 'id': ideaAsk.user.id }) }}">{{ ideaAsk.user.username }}</a></td>
+                            <td class="model-status">
                                 {% if ideaAsk.isSolved %}
                                     <span class="text-success"><i class="far fa-play-circle"></i> 解決</span>
                                 {% else %}

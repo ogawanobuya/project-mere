@@ -12,32 +12,48 @@
         </div>
     </div>
     <div class="container-fluid">
-        {% include 'parts/message.twig' %}
         <div class="row">
             <div class="page-header col-sm-8">
+                {% include 'parts/message.twig' %}
                 <div class="form-group">
                     <div class="text-right">{{ ideaAsk.createdAt|date('Y-m-d H:i:s') }}</div>
-                    <label class="control-label">募集タイトル</label>
+                    <label class="control-label"><i class="fas fa-user"></i>募集者</label>
+                    <h4>
+                        <strong>
+                            <a href="{{ path('user_index', { 'id': ideaAsk.user.id }) }}">{{ ideaAsk.user.username }}</a>
+                        </strong>
+                    </h4>
+                </div>
+                <div class="form-group">
+                    <label class="control-label"><i class="fas fa-tag"></i>募集タイトル</label>
                     <p class="form-control-static input-lg">{{ ideaAsk.title }}</p>
                 </div>
                 <div class="form-group">
-                    <label class="control-label">カテゴリ</label>
-                    <p class="form-control-static input-lg">{{ ideaAsk.ideaCategory.name }}</p>
+                    <label class="control-label"><i class="fas fa-list-ul"></i>カテゴリ</label>
+                    <h4><strong>{{ ideaAsk.ideaCategory.name }}</strong></h4>
                 </div>
                 <div class="form-group">
-                    <label class="control-label">募集内容詳細</label>
+                    <label class="control-label"><i class="fas fa-file-signature"></i>募集内容詳細</label>
                     <h5><strong>{{ ideaAsk.description }}</strong></h5>
                 </div><hr>
                 {% for ideaAnswer in ideaAnswers %}
                     <div class="alert alert-warning" role="alert">
                         <div class="form-group">
                             <div class="text-right">{{ ideaAnswer.createdAt|date('Y-m-d H:i:s') }}</div>
+                            <label class="control-label">作成者</label>
+                            <h4>
+                                <strong>
+                                    <a href="{{ path('user_index', { 'id': ideaAnswer.user.id }) }}">{{ ideaAnswer.user.username }}</a>
+                                </strong>
+                            </h4>
+                        </div>
+                        <div class="form-group">
                             <label class="control-label">一言アイデア</label>
                             <p class="form-control-static input-lg">{{ ideaAnswer.title }}</p>
                         </div>
                         <div class="form-group">
                             <label class="control-label">内容詳細</label>
-                            <p class="form-control-static input-lg">{{ ideaAnswer.description }}</p>
+                            <h5><strong>{{ ideaAnswer.description }}</strong></h5>
                         </div>
                     </div>
                 {% endfor %}

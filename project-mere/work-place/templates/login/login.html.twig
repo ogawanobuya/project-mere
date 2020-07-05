@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ユーザーLogIn{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="page-header col-sm-12">
+                <h1>ユーザーLogIn</h1>
+                <p class="description-area">ログイン画面です。必要事項を埋めてください。</p>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="page-header col-sm-8">
+                {% include 'parts/message.twig' %}
+                {% if error %}
+                    <div class="alert alert-danger" role="alert">
+                        <p>{{ error.message | trans(error.messageData, 'security') }}</p>
+                    </div>
+                {% endif %}
+                <form action="{{ path('login') }}" method="post">
+                    <div class="form-group">
+                        <label for="userEmail"><i class="fas fa-envelope"></i>ユーザーメールアドレス</label><br>
+                        <input type="email" id="userEmail" name="_username" required="required" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="password"><i class="fas fa-key"></i>ユーザーパスワード</label><br>
+                        <input type="password" id="password" name="_password" required="required" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">ログイン</button>
+                    </div>
+                </form>
+                <div class="goto-back text-right"><a href="{{ path('register') }}"><i class="fas fa-wrench"></i>アカウント作成</a></div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

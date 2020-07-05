@@ -29,6 +29,14 @@ class IdeaAnswer
     private $description;
 
     /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="ideaAnswer", cascade={"persist"})
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
+     * })
+     */
+    private $user;
+
+    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\IdeaAsk", inversedBy="ideaAnswer", cascade={"persist"})
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="idea_ask_id", referencedColumnName="id", nullable=false)
@@ -66,6 +74,18 @@ class IdeaAnswer
     public function setDescription(?string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

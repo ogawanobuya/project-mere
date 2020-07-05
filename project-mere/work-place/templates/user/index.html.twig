@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ユーザープロフィール{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="page-header col-sm-12">
+                <h1>ユーザープロフィール</h1>
+                <p class="description-area">ユーザーのプロフィール・回答実績をご覧いただけます。</p>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="page-header col-sm-8">
+                {% include 'parts/message.twig' %}
+                <div class="form-group">
+                    <label class="control-label">ニックネーム</label>
+                    <p class="form-control-static input-lg">{{ user.username }}</p>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">開始日</label>
+                    <p class="form-control-static input-lg">{{ user.createdAt|date('Y-m-d H:i:s') }}</p>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">プロフィール</label>
+                    <p class="form-control-static input-lg">{{ user.profile }}</p>
+                </div>
+                {% if user.isPermitEmail %}
+                    <div class="form-group">
+                        <label class="control-label">コンタクト</label>
+                        <p class="form-control-static input-lg">{{ user.userEmail }}</p>
+                    </div>
+                {% endif %}
+                {% if user.id == app.user.id %}
+                    <a class="btn btn-success" href="{{ path('user_edit', { 'id': user.id }) }}">編集</a>
+                {% endif %}
+            </div>
+            <div class="goto-back text-right"><a href="{{ path('idea_home') }}"><i class="fas fa-undo"></i> HOMEへ戻る</a></div>
+        </div>
+    </div>
+{% endblock %}
